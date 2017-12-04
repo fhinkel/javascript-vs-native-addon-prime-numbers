@@ -8,9 +8,9 @@ let wasmModule = new WebAssembly.Module(buf);
 let instance = new WebAssembly.Instance(wasmModule, {
     env: {
         STACKTOP: 0,
-        STACK_MAX: 256,
+        STACK_MAX: 2560,
         abortStackOverflow: function (i32) {console.log("stack oveflow");},
-        memory: new WebAssembly.Memory({initial: 256, maximum: 256}),
+        memory: new WebAssembly.Memory({initial: 2560, maximum: 2560}),
         table: new WebAssembly.Table({
             initial: 0, maximum: 0, element: "anyfunc"}),
         memoryBase: 0,
