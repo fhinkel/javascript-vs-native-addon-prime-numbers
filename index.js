@@ -20,7 +20,7 @@ let instance = new WebAssembly.Instance(wasmModule, {
 
 const wasm = instance.exports;
 
-console.log(`prime(10, 20) = ${wasm._prime(10, 20)}`);
+// console.log(`prime(2) = ${wasm._prime(2)}`);
 
 console.log("Hello performance friends.");
 console.log();
@@ -75,6 +75,8 @@ function run(i) {
 // Sanity checks.
 const checks = [ 
     [1,2],
+    [2,3],
+    [3,5],
     [7,17],
     // [10000, 104729],
     // [100000, 1299709],
