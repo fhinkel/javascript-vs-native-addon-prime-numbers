@@ -1,0 +1,185 @@
+
+> primes@1.0.0 start /Users/franzih/code/primes
+> node index.js
+
+Hello performance friends.
+
+1
+Prime in js: 6.669ms
+Prime in addon: 74.076ms
+2
+Prime in js: 6.599ms
+Prime in addon: 83.355ms
+3
+Prime in js: 11.885ms
+Prime in addon: 74.701ms
+4
+Prime in js: 17.237ms
+Prime in addon: 84.132ms
+5
+Prime in js: 35.631ms
+Prime in addon: 103.542ms
+6
+Prime in js: 52.127ms
+Prime in addon: 116.210ms
+7
+Prime in js: 77.092ms
+Prime in addon: 153.450ms
+8
+Prime in js: 92.366ms
+Prime in addon: 144.326ms
+9
+Prime in js: 97.190ms
+Prime in addon: 169.185ms
+10
+Prime in js: 139.119ms
+Prime in addon: 227.502ms
+11
+Prime in js: 150.856ms
+Prime in addon: 256.011ms
+12
+Prime in js: 214.078ms
+Prime in addon: 275.963ms
+13
+Prime in js: 237.618ms
+Prime in addon: 329.030ms
+14
+Prime in js: 272.455ms
+Prime in addon: 326.502ms
+15
+Prime in js: 277.523ms
+Prime in addon: 387.785ms
+16
+Prime in js: 344.207ms
+Prime in addon: 442.011ms
+17
+Prime in js: 398.455ms
+Prime in addon: 461.093ms
+18
+Prime in js: 414.486ms
+Prime in addon: 481.662ms
+19
+Prime in js: 480.838ms
+Prime in addon: 530.858ms
+20
+Prime in js: 512.601ms
+Prime in addon: 620.081ms
+21
+Prime in js: 586.038ms
+Prime in addon: 603.997ms
+22
+Prime in js: 613.781ms
+Prime in addon: 672.980ms
+23
+Prime in js: 638.588ms
+Prime in addon: 686.931ms
+24
+Prime in js: 689.744ms
+Prime in addon: 721.550ms
+25
+Prime in js: 775.608ms
+Prime in addon: 795.860ms
+26
+Prime in js: 904.965ms
+Prime in addon: 795.954ms
+27
+Prime in js: 885.287ms
+Prime in addon: 898.681ms
+28
+Prime in js: 886.412ms
+Prime in addon: 884.291ms
+29
+Prime in js: 977.945ms
+Prime in addon: 952.785ms
+30
+Prime in js: 1021.525ms
+Prime in addon: 1002.820ms
+31
+Prime in js: 1179.197ms
+Prime in addon: 1145.290ms
+32
+Prime in js: 1204.222ms
+Prime in addon: 1156.247ms
+33
+Prime in js: 1314.560ms
+Prime in addon: 1272.179ms
+34
+Prime in js: 1424.073ms
+Prime in addon: 1293.636ms
+35
+Prime in js: 1510.672ms
+Prime in addon: 1298.618ms
+36
+Prime in js: 1457.968ms
+Prime in addon: 1366.017ms
+37
+Prime in js: 1532.455ms
+Prime in addon: 1396.411ms
+38
+Prime in js: 1602.281ms
+Prime in addon: 1475.207ms
+39
+Prime in js: 1841.933ms
+Prime in addon: 1503.364ms
+40
+Prime in js: 1788.317ms
+Prime in addon: 1609.403ms
+41
+Prime in js: 1839.744ms
+Prime in addon: 1687.206ms
+42
+Prime in js: 1934.036ms
+Prime in addon: 1774.695ms
+43
+Prime in js: 2129.976ms
+Prime in addon: 2073.713ms
+44
+Prime in js: 2544.262ms
+Prime in addon: 2024.947ms
+45
+Prime in js: 2226.696ms
+Prime in addon: 1978.428ms
+46
+Prime in js: 2422.687ms
+Prime in addon: 2039.582ms
+47
+Prime in js: 2515.839ms
+Prime in addon: 2131.857ms
+48
+Prime in js: 2628.989ms
+Prime in addon: 2314.761ms
+49
+Prime in js: 2715.003ms
+Prime in addon: 2536.634ms
+50
+Prime in js: 2802.112ms
+Prime in addon: 2423.259ms
+51
+Prime in js: 2849.069ms
+Prime in addon: 2424.319ms
+52
+Prime in js: 2899.037ms
+Prime in addon: 2479.497ms
+53
+Prime in js: 3000.780ms
+Prime in addon: 2658.095ms
+54
+Prime in js: 3060.260ms
+Prime in addon: 2692.548ms
+55
+Prime in js: 3210.327ms
+Prime in addon: 2728.983ms
+56
+Prime in js: 3277.756ms
+Prime in addon: 2830.198ms
+57
+Prime in js: 3452.862ms
+Prime in addon: 2802.270ms
+58
+Prime in js: 3400.612ms
+Prime in addon: 2985.466ms
+59
+Prime in js: 3447.293ms
+Prime in addon: 2957.377ms
+
+So long and thanks for the fish.
