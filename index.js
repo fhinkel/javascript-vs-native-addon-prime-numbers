@@ -17,7 +17,7 @@ function run(i) {
     console.log(i);
 
     console.time('Prime in js');
-    js.prime(i)
+    js.prime(i);
     console.timeEnd('Prime in js');
 
     console.time('Prime in addon');
