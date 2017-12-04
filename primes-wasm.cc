@@ -35,4 +35,4 @@ int EMSCRIPTEN_KEEPALIVE prime(int n) {
 }
 #endif
 
-// emcc primes-wasm.cc -o primes-wasm.js -s WASM=1 -s SIDE_MODULE=1 -s ONLY_MY_CODE=1
+// emcc primes-wasm.cc -o primes.js -s WASM=1 -s SIDE_MODULE=1 -s ONLY_MY_CODE=1
