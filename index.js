@@ -2,7 +2,7 @@ const js = require('./primes.js');
 const addon = require('./build/Release/primes.node');
 
 const fs = require('fs');
-const buf = fs.readFileSync('./adder.wasm');
+const buf = fs.readFileSync('./primes-wasm.wasm');
  
 let wasmModule = new WebAssembly.Module(buf);
 let instance = new WebAssembly.Instance(wasmModule, {
