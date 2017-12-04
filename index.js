@@ -8,9 +8,11 @@ let wasmModule = new WebAssembly.Module(buf);
 let instance = new WebAssembly.Instance(wasmModule, {
     env: {
         STACKTOP: 0,
-        STACK_MAX: 2560,
-        abortStackOverflow: function (i32) {console.log("stack oveflow");},
-        memory: new WebAssembly.Memory({initial: 2560, maximum: 2560}),
+        STACK_MAX: 256,
+        abortStackOverflow: function (i32) {},
+        // abortStackOverflow: function (i32) {console.log("stack overflow");},
+        
+        memory: new WebAssembly.Memory({initial: 256, maximum: 256}),
         table: new WebAssembly.Table({
             initial: 0, maximum: 0, element: "anyfunc"}),
         memoryBase: 0,
@@ -78,7 +80,7 @@ const checks = [
     [2,3],
     [3,5],
     [7,17],
-    // [10000, 104729],
+    [10000, 104729],
     // [100000, 1299709],
     // [1000000, 15485863],
     // [10000000, 179424673]
