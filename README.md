@@ -21,16 +21,11 @@ Experiment with this example yourself. Just remember to run `npm install` to rec
 
 The JavaScript and the C++ implementation use the same algorithm. Calling into the addon and running the computations in C++ is faster than staying in JavaScript except for small prime numbers, i.e., the first 25 prime numbers.
 
-### Computing the first 50 prime numbers with Node 9.2
-![Computing the first 50 prime numbers with Node 9.2.](https://fhinkel.github.io/javascript-vs-native-addon-prime-numbers/WithOpt50.png)
-### Computing the first 1,000,000 prime numbers with Node 9.2
+### Computing the first 1,000,000 prime numbers without warm up
 ![Computing the first 1,000,000 prime numbers with Node 9.2.](https://fhinkel.github.io/javascript-vs-native-addon-prime-numbers/WithOpt.png)
 
 ### Computing prime numbers without adaptive optimizations
 ![Computing prime numbers without adaptive optimizations.](https://fhinkel.github.io/javascript-vs-native-addon-prime-numbers/WithoutOpt.png)
-
-### Data
-[Spreadsheet with data](https://docs.google.com/spreadsheets/d/1VhhGmq7DWJEpW4zOtK2g1BRjQeiYo0DrQcQrIBH_la8/edit?usp=sharing). 
 
 ## License
 MIT
