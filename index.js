@@ -50,30 +50,35 @@ function run(i) {
     console.time('Prime in addon');
     addon.prime(i)
     console.timeEnd('Prime in addon');
+
+
+    console.time('Prime in wasm');
+    wasm._prime(i)
+    console.timeEnd('Prime in wasm');
 }
 
 // Compute lots of primes.
-// for(let i = 1; i < 200; i++) {
-//     run(i);
-// }
+for(let i = 1; i < 200; i++) {
+    run(i);
+}
 
-// for(let i = 2; i < 10; i++) {
-//     run(i*100);
-// }
+for(let i = 2; i < 10; i++) {
+    run(i*100);
+}
 
-// for(let i = 1; i < 10; i++) {
-//     run(i*1000);
-// }
+for(let i = 1; i < 10; i++) {
+    run(i*1000);
+}
 
-// for(let i = 1; i < 10; i++) {
-//     run(i*10000);
-// }
+for(let i = 1; i < 10; i++) {
+    run(i*10000);
+}
 
-// for(let i = 1; i < 10; i++) {
-//     run(i*100000);
-// }
+for(let i = 1; i < 10; i++) {
+    run(i*100000);
+}
 
-// run(1000000);
+run(1000000);
 
 // Sanity checks.
 const checks = [ 
@@ -82,9 +87,9 @@ const checks = [
     [3,5],
     [7,17],
     [10000, 104729],
-    // [100000, 1299709],
-    // [1000000, 15485863],
-    // [10000000, 179424673]
+    [100000, 1299709],
+    [1000000, 15485863],
+    [10000000, 179424673]
 ];
 
 // Run the checks at the end, otherwise
