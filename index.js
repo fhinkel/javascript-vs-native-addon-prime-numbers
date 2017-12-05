@@ -17,7 +17,8 @@ let instance = new WebAssembly.Instance(wasmModule, {
             initial: 0, maximum: 0, element: "anyfunc"}),
         memoryBase: 0,
         tableBase: 0,
-    },
+        __Z4sqrti: p => Math.sqrt(p)
+    }
 });
 
 const wasm = instance.exports;

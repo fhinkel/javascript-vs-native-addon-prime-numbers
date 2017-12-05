@@ -1,6 +1,7 @@
-#include <stdio.h>
+extern int sqrt(int);
+
 bool isPrime(int p) {
-    int upper = p/2;
+    int upper = sqrt(p);
     for(int i = 2; i <= upper; i++) {
         if (p % i == 0 ) {
             return false;
@@ -35,3 +36,4 @@ int prime(int n) {
 #endif
 
 // emcc primes-wasm.cc -o primes1.js -s WASM=1 -s EXPORTED_FUNCTIONS="['_prime']" -s ONLY_MY_CODE=1
+// -s SIDE_MODULE=1 causes stack overflow for me
