@@ -2,7 +2,7 @@ const js = require('./primes.js');
 const addon = require('./build/Release/primes.node');
 
 const fs = require('fs');
-const buf = fs.readFileSync('./hello.wasm');
+const buf = fs.readFileSync('./primes1.wasm');
  
 let wasmModule = new WebAssembly.Module(buf);
 let instance = new WebAssembly.Instance(wasmModule, {
@@ -34,8 +34,8 @@ function sanityCheck(n, expected) {
     if (addon.prime(n) !== expected) {
         console.error(`Looks like your C++ is not right ${addon.prime(n)}`);
     }
-    if (wasm._bezier1(0.5, 10, 20) !== expected) {
-        console.error(`Looks like your WebAssemby is not right ${wasm._bezier1(3, 10, 34)}`);
+    if (wasm._prime(n) !== expected) {
+        console.error(`Looks like your WebAssemby is not right ${wasm._prime(n)}`);
     }
 }
 
