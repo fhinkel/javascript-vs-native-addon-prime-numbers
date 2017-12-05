@@ -2,15 +2,15 @@ const js = require('./primes.js');
 const addon = require('./build/Release/primes.node');
 
 const fs = require('fs');
-const buf = fs.readFileSync('./primes.wasm');
+const buf = fs.readFileSync('./hello.wasm');
  
 let wasmModule = new WebAssembly.Module(buf);
 let instance = new WebAssembly.Instance(wasmModule, {
     env: {
         STACKTOP: 0,
         STACK_MAX: 256,
-        abortStackOverflow: function (i32) {},
-        // abortStackOverflow: function (i32) {console.log("stack overflow");},
+        // abortStackOverflow: function (i32) {},
+        abortStackOverflow: function (i32) {console.log("stack overflow");},
         
         memory: new WebAssembly.Memory({initial: 256, maximum: 256}),
         table: new WebAssembly.Table({
@@ -34,8 +34,8 @@ function sanityCheck(n, expected) {
     if (addon.prime(n) !== expected) {
         console.error(`Looks like your C++ is not right ${addon.prime(n)}`);
     }
-    if (wasm._prime(n) !== expected) {
-        console.error(`Looks like your WebAssemby is not right ${wasm._prime(n)}`);
+    if (wasm._bezier1(0.5, 10, 20) !== expected) {
+        console.error(`Looks like your WebAssemby is not right ${wasm._bezier1(3, 10, 34)}`);
     }
 }
 
