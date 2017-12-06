@@ -20,7 +20,7 @@ var languages = data.columns.slice(1).map(function(id) {
 return {
   id: id,
   values: data.map(function(d) {
-    return {id: d.id, timing: d[id]*1000};
+    return {id: +d.id, timing: d[id]*1000};
   })
 };
 });
@@ -30,14 +30,15 @@ x.domain(d3.extent(data, function(d) { return +d.id; }));
 
 y.domain([
 d3.min(languages, function(c) { return d3.min(c.values, function(d) { return d.timing; }); }),
-d3.max(languages, function(c) { return d3.max(c.values, function(d) { return d.timing; }); })
+d3.max(languages, function(c) { return d3.max(c.values, function(d) { return d.timing; }); }) / 2
 ]);
 
 z.domain(languages.map(function(c) { return c.id; }));
 
 g.append("g")
-  .attr("class", "axis axis--x")
+  .attr("class", "axis axis--y")
   .attr("transform", "translate(0," + height + ")")
+  .attr("fill", "#000")
   .call(d3.axisBottom(x));
 
 g.append("g")
