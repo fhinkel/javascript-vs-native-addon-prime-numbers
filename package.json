@@ -12,6 +12,7 @@
   "license": "MIT",
   "gypfile": true,
   "dependencies": {
+    "express": "^4.16.2",
     "node-gyp": "3.6.2"
   },
   "engines": {
