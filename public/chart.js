@@ -1,245 +1,77 @@
-window.onload = function () {
+var svg = d3.select("svg"),
+margin = {top: 20, right: 80, bottom: 30, left: 50},
+width = svg.attr("width") - margin.left - margin.right,
+height = svg.attr("height") - margin.top - margin.bottom,
+g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	title: {
-		text: "House Median Price"
-	},
-	axisX: {
-		valueFormatString: "MMM YYYY"
-	},
-	axisY2: {
-		title: "Median List Price",
-		prefix: "$",
-		suffix: "K"
-	},
-	toolTip: {
-		shared: true
-	},
-	legend: {
-		cursor: "pointer",
-		verticalAlign: "top",
-		horizontalAlign: "center",
-		dockInsidePlotArea: true,
-		itemclick: toogleDataSeries
-	},
-	data: [{
-		type:"line",
-		axisYType: "secondary",
-		name: "San Fransisco",
-		showInLegend: true,
-		markerSize: 0,
-		yValueFormatString: "$#,###k",
-		dataPoints: [		
-			{ x: new Date(2014, 00, 01), y: 850 },
-			{ x: new Date(2014, 01, 01), y: 889 },
-			{ x: new Date(2014, 02, 01), y: 890 },
-			{ x: new Date(2014, 03, 01), y: 899 },
-			{ x: new Date(2014, 04, 01), y: 903 },
-			{ x: new Date(2014, 05, 01), y: 925 },
-			{ x: new Date(2014, 06, 01), y: 899 },
-			{ x: new Date(2014, 07, 01), y: 875 },
-			{ x: new Date(2014, 08, 01), y: 927 },
-			{ x: new Date(2014, 09, 01), y: 949 },
-			{ x: new Date(2014, 10, 01), y: 946 },
-			{ x: new Date(2014, 11, 01), y: 927 },
-			{ x: new Date(2015, 00, 01), y: 950 },
-			{ x: new Date(2015, 01, 01), y: 998 },
-			{ x: new Date(2015, 02, 01), y: 998 },
-			{ x: new Date(2015, 03, 01), y: 1050 },
-			{ x: new Date(2015, 04, 01), y: 1050 },
-			{ x: new Date(2015, 05, 01), y: 999 },
-			{ x: new Date(2015, 06, 01), y: 998 },
-			{ x: new Date(2015, 07, 01), y: 998 },
-			{ x: new Date(2015, 08, 01), y: 1050 },
-			{ x: new Date(2015, 09, 01), y: 1070 },
-			{ x: new Date(2015, 10, 01), y: 1050 },
-			{ x: new Date(2015, 11, 01), y: 1050 },
-			{ x: new Date(2016, 00, 01), y: 995 },
-			{ x: new Date(2016, 01, 01), y: 1090 },
-			{ x: new Date(2016, 02, 01), y: 1100 },
-			{ x: new Date(2016, 03, 01), y: 1150 },
-			{ x: new Date(2016, 04, 01), y: 1150 },
-			{ x: new Date(2016, 05, 01), y: 1150 },
-			{ x: new Date(2016, 06, 01), y: 1100 },
-			{ x: new Date(2016, 07, 01), y: 1100 },
-			{ x: new Date(2016, 08, 01), y: 1150 },
-			{ x: new Date(2016, 09, 01), y: 1170 },
-			{ x: new Date(2016, 10, 01), y: 1150 },
-			{ x: new Date(2016, 11, 01), y: 1150 },
-			{ x: new Date(2017, 00, 01), y: 1150 },
-			{ x: new Date(2017, 01, 01), y: 1200 },
-			{ x: new Date(2017, 02, 01), y: 1200 },
-			{ x: new Date(2017, 03, 01), y: 1200 },
-			{ x: new Date(2017, 04, 01), y: 1190 },
-			{ x: new Date(2017, 05, 01), y: 1170 }
-		]
-	},
-	{
-		type: "line",
-		axisYType: "secondary",
-		name: "Manhattan",
-		showInLegend: true,
-		markerSize: 0,
-		yValueFormatString: "$#,###k",
-		dataPoints: [
-			{ x: new Date(2014, 00, 01), y: 1200 },
-			{ x: new Date(2014, 01, 01), y: 1200 },
-			{ x: new Date(2014, 02, 01), y: 1190 },
-			{ x: new Date(2014, 03, 01), y: 1180 },
-			{ x: new Date(2014, 04, 01), y: 1250 },
-			{ x: new Date(2014, 05, 01), y: 1270 },
-			{ x: new Date(2014, 06, 01), y: 1300 },
-			{ x: new Date(2014, 07, 01), y: 1300 },
-			{ x: new Date(2014, 08, 01), y: 1358 },
-			{ x: new Date(2014, 09, 01), y: 1410 },
-			{ x: new Date(2014, 10, 01), y: 1480 },
-			{ x: new Date(2014, 11, 01), y: 1500 },
-			{ x: new Date(2015, 00, 01), y: 1500 },
-			{ x: new Date(2015, 01, 01), y: 1550 },
-			{ x: new Date(2015, 02, 01), y: 1550 },
-			{ x: new Date(2015, 03, 01), y: 1590 },
-			{ x: new Date(2015, 04, 01), y: 1600 },
-			{ x: new Date(2015, 05, 01), y: 1590 },
-			{ x: new Date(2015, 06, 01), y: 1590 },
-			{ x: new Date(2015, 07, 01), y: 1620 },
-			{ x: new Date(2015, 08, 01), y: 1670 },
-			{ x: new Date(2015, 09, 01), y: 1720 },
-			{ x: new Date(2015, 10, 01), y: 1750 },
-			{ x: new Date(2015, 11, 01), y: 1820 },
-			{ x: new Date(2016, 00, 01), y: 2000 },
-			{ x: new Date(2016, 01, 01), y: 1920 },
-			{ x: new Date(2016, 02, 01), y: 1750 },
-			{ x: new Date(2016, 03, 01), y: 1850 },
-			{ x: new Date(2016, 04, 01), y: 1750 },
-			{ x: new Date(2016, 05, 01), y: 1730 },
-			{ x: new Date(2016, 06, 01), y: 1700 },
-			{ x: new Date(2016, 07, 01), y: 1730 },
-			{ x: new Date(2016, 08, 01), y: 1720 },
-			{ x: new Date(2016, 09, 01), y: 1740 },
-			{ x: new Date(2016, 10, 01), y: 1750 },
-			{ x: new Date(2016, 11, 01), y: 1750 },
-			{ x: new Date(2017, 00, 01), y: 1750 },
-			{ x: new Date(2017, 01, 01), y: 1770 },
-			{ x: new Date(2017, 02, 01), y: 1750 },
-			{ x: new Date(2017, 03, 01), y: 1750 },
-			{ x: new Date(2017, 04, 01), y: 1730 },
-			{ x: new Date(2017, 05, 01), y: 1730 }
-		]
-	},
-	{
-		type: "line",
-		axisYType: "secondary",
-		name: "Seatle",
-		showInLegend: true,
-		markerSize: 0,
-		yValueFormatString: "$#,###k",
-		dataPoints: [
-			{ x: new Date(2014, 00, 01), y: 409 },
-			{ x: new Date(2014, 01, 01), y: 415 },
-			{ x: new Date(2014, 02, 01), y: 419 },
-			{ x: new Date(2014, 03, 01), y: 429 },
-			{ x: new Date(2014, 04, 01), y: 429 },
-			{ x: new Date(2014, 05, 01), y: 450 },
-			{ x: new Date(2014, 06, 01), y: 450 },
-			{ x: new Date(2014, 07, 01), y: 445 },
-			{ x: new Date(2014, 08, 01), y: 450 },
-			{ x: new Date(2014, 09, 01), y: 450 },
-			{ x: new Date(2014, 10, 01), y: 440 },
-			{ x: new Date(2014, 11, 01), y: 429 },
-			{ x: new Date(2015, 00, 01), y: 435 },
-			{ x: new Date(2015, 01, 01), y: 450 },
-			{ x: new Date(2015, 02, 01), y: 475 },
-			{ x: new Date(2015, 03, 01), y: 475 },
-			{ x: new Date(2015, 04, 01), y: 475 },
-			{ x: new Date(2015, 05, 01), y: 489 },
-			{ x: new Date(2015, 06, 01), y: 495 },
-			{ x: new Date(2015, 07, 01), y: 495 },
-			{ x: new Date(2015, 08, 01), y: 500 },
-			{ x: new Date(2015, 09, 01), y: 508 },
-			{ x: new Date(2015, 10, 01), y: 520 },
-			{ x: new Date(2015, 11, 01), y: 525 },
-			{ x: new Date(2016, 00, 01), y: 525 },
-			{ x: new Date(2016, 01, 01), y: 529 },
-			{ x: new Date(2016, 02, 01), y: 549 },
-			{ x: new Date(2016, 03, 01), y: 550 },
-			{ x: new Date(2016, 04, 01), y: 568 },
-			{ x: new Date(2016, 05, 01), y: 575 },
-			{ x: new Date(2016, 06, 01), y: 579 },
-			{ x: new Date(2016, 07, 01), y: 575 },
-			{ x: new Date(2016, 08, 01), y: 585 },
-			{ x: new Date(2016, 09, 01), y: 589 },
-			{ x: new Date(2016, 10, 01), y: 595 },
-			{ x: new Date(2016, 11, 01), y: 595 },
-			{ x: new Date(2017, 00, 01), y: 595 },
-			{ x: new Date(2017, 01, 01), y: 600 },
-			{ x: new Date(2017, 02, 01), y: 624 },
-			{ x: new Date(2017, 03, 01), y: 635 },
-			{ x: new Date(2017, 04, 01), y: 650 },
-			{ x: new Date(2017, 05, 01), y: 675 }
-		]
-	},
-	{
-		type: "line",
-		axisYType: "secondary",
-		name: "Los Angeles",
-		showInLegend: true,
-		markerSize: 0,
-		yValueFormatString: "$#,###k",
-		dataPoints: [
-			{ x: new Date(2014, 00, 01), y: 529 },
-			{ x: new Date(2014, 01, 01), y: 540 },
-			{ x: new Date(2014, 02, 01), y: 539 },
-			{ x: new Date(2014, 03, 01), y: 565 },
-			{ x: new Date(2014, 04, 01), y: 575 },
-			{ x: new Date(2014, 05, 01), y: 579 },
-			{ x: new Date(2014, 06, 01), y: 589 },
-			{ x: new Date(2014, 07, 01), y: 579 },
-			{ x: new Date(2014, 08, 01), y: 579 },
-			{ x: new Date(2014, 09, 01), y: 579 },
-			{ x: new Date(2014, 10, 01), y: 569 },
-			{ x: new Date(2014, 11, 01), y: 525 },
-			{ x: new Date(2015, 00, 01), y: 535 },
-			{ x: new Date(2015, 01, 01), y: 575 },
-			{ x: new Date(2015, 02, 01), y: 599 },
-			{ x: new Date(2015, 03, 01), y: 619 },
-			{ x: new Date(2015, 04, 01), y: 639 },
-			{ x: new Date(2015, 05, 01), y: 648 },
-			{ x: new Date(2015, 06, 01), y: 640 },
-			{ x: new Date(2015, 07, 01), y: 645 },
-			{ x: new Date(2015, 08, 01), y: 648 },
-			{ x: new Date(2015, 09, 01), y: 649 },
-			{ x: new Date(2015, 10, 01), y: 649 },
-			{ x: new Date(2015, 11, 01), y: 649 },
-			{ x: new Date(2016, 00, 01), y: 650 },
-			{ x: new Date(2016, 01, 01), y: 665 },
-			{ x: new Date(2016, 02, 01), y: 675 },
-			{ x: new Date(2016, 03, 01), y: 695 },
-			{ x: new Date(2016, 04, 01), y: 690 },
-			{ x: new Date(2016, 05, 01), y: 699 },
-			{ x: new Date(2016, 06, 01), y: 699 },
-			{ x: new Date(2016, 07, 01), y: 699 },
-			{ x: new Date(2016, 08, 01), y: 699 },
-			{ x: new Date(2016, 09, 01), y: 699 },
-			{ x: new Date(2016, 10, 01), y: 709 },
-			{ x: new Date(2016, 11, 01), y: 699 },
-			{ x: new Date(2017, 00, 01), y: 700 },
-			{ x: new Date(2017, 01, 01), y: 700 },
-			{ x: new Date(2017, 02, 01), y: 724 },
-			{ x: new Date(2017, 03, 01), y: 739 },
-			{ x: new Date(2017, 04, 01), y: 749 },
-			{ x: new Date(2017, 05, 01), y: 740 }
-		]
-	}]
+var parseTime = d3.timeParse("%Y%m%d");
+
+var x = d3.scaleTime().range([0, width]),
+y = d3.scaleLinear().range([height, 0]),
+z = d3.scaleOrdinal(d3.schemeCategory10);
+
+var line = d3.line()
+.curve(d3.curveBasis)
+.x(function(d) { return x(d.date); })
+.y(function(d) { return y(d.temperature); });
+
+d3.tsv("data.tsv", type, function(error, data) {
+if (error) throw error;
+
+var cities = data.columns.slice(1).map(function(id) {
+return {
+  id: id,
+  values: data.map(function(d) {
+    return {date: d.date, temperature: d[id]};
+  })
+};
 });
-chart.render();
 
-function toogleDataSeries(e){
-	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
-		e.dataSeries.visible = false;
-	} else{
-		e.dataSeries.visible = true;
-	}
-	chart.render();
-}
+x.domain(d3.extent(data, function(d) { return d.date; }));
 
+y.domain([
+d3.min(cities, function(c) { return d3.min(c.values, function(d) { return d.temperature; }); }),
+d3.max(cities, function(c) { return d3.max(c.values, function(d) { return d.temperature; }); })
+]);
+
+z.domain(cities.map(function(c) { return c.id; }));
+
+g.append("g")
+  .attr("class", "axis axis--x")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(x));
+
+g.append("g")
+  .attr("class", "axis axis--y")
+  .call(d3.axisLeft(y))
+.append("text")
+  .attr("transform", "rotate(-90)")
+  .attr("y", 6)
+  .attr("dy", "0.71em")
+  .attr("fill", "#000")
+  .text("Temperature, ºF");
+
+var city = g.selectAll(".city")
+.data(cities)
+.enter().append("g")
+  .attr("class", "city");
+
+city.append("path")
+  .attr("class", "line")
+  .attr("d", function(d) { return line(d.values); })
+  .style("stroke", function(d) { return z(d.id); });
+
+city.append("text")
+  .datum(function(d) { return {id: d.id, value: d.values[d.values.length - 1]}; })
+  .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.temperature) + ")"; })
+  .attr("x", 3)
+  .attr("dy", "0.35em")
+  .style("font", "10px sans-serif")
+  .text(function(d) { return d.id; });
+});
+
+function type(d, _, columns) {
+d.date = parseTime(d.date);
+for (var i = 1, n = columns.length, c; i < n; ++i) d[c = columns[i]] = +d[c];
+return d;
 }
