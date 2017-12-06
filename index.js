@@ -37,9 +37,9 @@ wasm.onRuntimeInitialized = () => {
     wasm.prime = wasm.cwrap('prime', 'number', ['number']);
 
     // Compute lots of primes.
-    // for(let i = 1; i < 200; i++) {
-    //     run(i);
-    // }
+    for(let i = 1; i < 200; i++) {
+        run(i);
+    }
 
     // for(let i = 2; i < 10; i++) {
     //     run(i*100);
@@ -53,11 +53,11 @@ wasm.onRuntimeInitialized = () => {
     //     run(i*10000);
     // }
 
-    for(let i = 1; i < 10; i++) {
-        run(i*100000);
-    }
+    // for(let i = 1; i < 10; i++) {
+    //     run(i*100000);
+    // }
 
-    run(1000000);
+    // run(1000000);
 
     // Sanity checks.
     const checks = [ 
@@ -66,8 +66,8 @@ wasm.onRuntimeInitialized = () => {
         [3,5],
         [7,17],
         [10000, 104729],
-        [100000, 1299709],
-        [1000000, 15485863],
+        // [100000, 1299709],
+        // [1000000, 15485863],
         // [10000000, 179424673]
     ];
 
