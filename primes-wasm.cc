@@ -1,4 +1,11 @@
-extern int sqrt(int);
+// extern int sqrt(int);
+#include <math.h>
+#include <emscripten.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 
 bool isPrime(int p) {
     int upper = sqrt(p);
@@ -10,9 +17,7 @@ bool isPrime(int p) {
     return true;
 }
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+
 
 
 // Return n-th prime
@@ -37,3 +42,5 @@ int prime(int n) {
 
 // emcc primes-wasm.cc -o primes1.js -s WASM=1 -s EXPORTED_FUNCTIONS="['_prime']" -s ONLY_MY_CODE=1
 // -s SIDE_MODULE=1 causes stack overflow for me
+
+// emcc primes-wasm.cc -o wasm-api.js -s WASM=1 -s EXPORTED_FUNCTIONS="['_prime']" 
