@@ -41,8 +41,6 @@ writeStream.write('id\tJavaScript\tC++\tWebAssembly\n');
 
 
 wasm.onRuntimeInitialized = () => {
-    console.log("Hello performance friends.");
-    console.log();
     wasm.prime = wasm.cwrap('prime', 'number', ['number']);
 
     // Compute lots of primes.
@@ -50,17 +48,17 @@ wasm.onRuntimeInitialized = () => {
         run(i);
     }
 
-    // for(let i = 2; i < 10; i++) {
-    //     run(i*100);
-    // }
+    for(let i = 2; i < 10; i++) {
+        run(i*100);
+    }
 
-    // for(let i = 1; i < 10; i++) {
-    //     run(i*1000);
-    // }
+    for(let i = 1; i < 10; i++) {
+        run(i*1000);
+    }
 
-    // for(let i = 1; i < 10; i++) {
-    //     run(i*10000);
-    // }
+    for(let i = 1; i < 10; i++) {
+        run(i*10000);
+    }
 
     // for(let i = 1; i < 10; i++) {
     //     run(i*100000);
@@ -86,16 +84,14 @@ wasm.onRuntimeInitialized = () => {
         sanityCheck(...a); 
     });
 
-    console.log();
-    console.log('So long and thanks for the fish.');
-
     writeStream.end();
+    console.log('All done.');
 }
 
  const express = require('express');
 
  const app = express();
  
- app.use(express.static('public'));
+ var server = app.use(express.static('public'));
  
  app.listen(3000, () => console.log('Example app listening on port 3000'))

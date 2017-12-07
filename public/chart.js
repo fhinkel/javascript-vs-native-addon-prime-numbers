@@ -1,5 +1,5 @@
 var svg = d3.select("svg"),
-margin = {top: 20, right: 80, bottom: 30, left: 50},
+margin = {top: 20, right: 80, bottom: 30, left: 150},
 width = svg.attr("width") - margin.left - margin.right,
 height = svg.attr("height") - margin.top - margin.bottom,
 g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -28,10 +28,13 @@ return {
 console.log(d3.extent(data, function(d) { return +d.id; }));
 x.domain(d3.extent(data, function(d) { return +d.id; }));
 
-y.domain([
-d3.min(languages, function(c) { return d3.min(c.values, function(d) { return d.timing; }); }),
-60
-]);
+let [min, max] = [d3.min(languages, function(c) { return d3.min(c.values, function(d) { return d.timing; }); }),
+    d3.max(languages, function(c) { return d3.max(c.values, function(d) { return d.timing; }); })
+];
+
+console.log(min);
+console.log(max);
+y.domain([min, max]);
 
 z.domain(languages.map(function(c) { return c.id; }));
 
