@@ -2,6 +2,8 @@ const js = require('./primes.js');
 const addon = require('./build/Release/primes.node');
 const wasm = require('./wasm-api.js');
 
+const { performance } = require('perf_hooks');
+
 function sanityCheck(n, expected) {
     if (js.prime(n) !== expected) {
         console.error(`Looks like your JavaScript is not right: ${js.prime(n)}`); 
@@ -15,20 +17,27 @@ function sanityCheck(n, expected) {
 }
 
 function run(i) {
-    console.log(i);
+    var js0 = performance.now();
+    js.prime(i);
+    var js1 = performance.now();
 
-    console.time('Prime in js');
-    js.prime(i)
-    console.timeEnd('Prime in js');
+    var addon0 = performance.now();
+    addon.prime(i);
+    var addon1 = performance.now();
 
-    console.time('Prime in addon');
-    addon.prime(i)
-    console.timeEnd('Prime in addon');
+    var wasm0 = performance.now();
+    wasm.prime(i);
+    var wasm1 = performance.now();
 
-    console.time('Prime in wasm');
-    wasm.prime(i)
-    console.timeEnd('Prime in wasm');
+   //console.log(i + "\t" + (js1 - js0) + "\t" + (addon1 - addon0) + "\t" + (wasm1 - wasm0));
+
+    writeStream.write(i + "\t" + (js1 - js0) + "\t" + (addon1 - addon0) + "\t" + (wasm1 - wasm0) + "\n");
 }
+
+const fs = require('fs');
+
+let writeStream = fs.createWriteStream('public/wasm.tsv');
+writeStream.write('id\tJavaScript\tC++\tWebAssembly\n');
 
 
 wasm.onRuntimeInitialized = () => {
@@ -37,7 +46,7 @@ wasm.onRuntimeInitialized = () => {
     wasm.prime = wasm.cwrap('prime', 'number', ['number']);
 
     // Compute lots of primes.
-    for(let i = 1; i < 200; i++) {
+    for(let i = 1; i < 100; i++) {
         run(i);
     }
 
@@ -79,11 +88,13 @@ wasm.onRuntimeInitialized = () => {
 
     console.log();
     console.log('So long and thanks for the fish.');
+
+    writeStream.end();
 }
 
  const express = require('express');
 
- const app = express()
+ const app = express();
  
  app.use(express.static('public'));
  

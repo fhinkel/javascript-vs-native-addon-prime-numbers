@@ -30,7 +30,7 @@ x.domain(d3.extent(data, function(d) { return +d.id; }));
 
 y.domain([
 d3.min(languages, function(c) { return d3.min(c.values, function(d) { return d.timing; }); }),
-d3.max(languages, function(c) { return d3.max(c.values, function(d) { return d.timing; }); }) / 2
+60
 ]);
 
 z.domain(languages.map(function(c) { return c.id; }));
