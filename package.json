@@ -12,6 +12,7 @@
   "license": "MIT",
   "gypfile": true,
   "dependencies": {
+    "node-addon-api": "^1.1.0",
     "node-gyp": "3.6.2"
   },
   "engines": {

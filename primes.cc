@@ -1,4 +1,4 @@
-#include <node_api.h>
+#include <napi.h>
 #include <math.h>
 
 namespace primes {
@@ -29,38 +29,19 @@ int prime(napi_env env, int n) {
     return result;
 }
 
-napi_value Method(napi_env env, napi_callback_info info) {
-    napi_status status;
-
-    size_t argc = 1;
-    int number = 0;
-    napi_value argv[1];
-    status = napi_get_cb_info(env, info, &argc, argv, nullptr, nullptr);
-    if (status != napi_ok) return nullptr;
-
-    status = napi_get_value_int32(env, argv[0], &number);
-    if (status != napi_ok) return nullptr;
-
+Napi::Value Method(const Napi::CallbackInfo& info) {
+    Napi::Env env = info.Env();
+    int number = info[0].ToNumber().Int32Value();
     int res = primes::prime(env, number);
-    napi_value prime;
-    status = napi_create_int32(env, res, &prime);
-    if (status != napi_ok) return nullptr;
-
-    return prime;
+    return Napi::Number::New(env, res);
 }
 
-napi_value init(napi_env env, napi_value exports) {
-    napi_status status;
-    napi_value fn;
-
-    status = napi_create_function(env, nullptr, 0, Method, nullptr, &fn);
-    if (status != napi_ok) return nullptr;
-
-    status = napi_set_named_property(env, exports, "prime", fn);
-    if (status != napi_ok) return nullptr;
+Napi::Object Init(Napi::Env env, Napi::Object exports) {
+    exports.Set(Napi::String::New(env, "prime"),
+                Napi::Function::New(env, Method));
     return exports;
 }
 
-NAPI_MODULE(NODE_GYP_MODULE_NAME, init)
+NODE_API_MODULE(NODE_GYP_MODULE_NAME, Init)
 
 } // End namespace prime
