@@ -4,6 +4,7 @@
   "description": "Compare performance of C++ and JS",
   "main": "index.js",
   "scripts": {
+    "build-wasm": "wa compile -O -o primes.wasm primes-wasm.c",
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "node-gyp rebuild",
     "start": "node index.js"
@@ -12,8 +13,10 @@
   "license": "MIT",
   "gypfile": true,
   "dependencies": {
+    "make-promises-safe": "^1.1.0",
     "node-addon-api": "^1.1.0",
-    "node-gyp": "3.6.2"
+    "node-gyp": "3.6.2",
+    "webassembly": "^0.11.0"
   },
   "engines": {
     "node": ">=8.3"
