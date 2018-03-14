@@ -9,6 +9,7 @@ JavaScript is a ridiculously fast scripting language thanks to modern JavaScript
 
 ```
 git clone git@github.com:fhinkel/javascript-vs-native-addon-prime-numbers.git
+cd javascript-vs-native-addon-prime-numbers
 npm install
 npm start
 ```
