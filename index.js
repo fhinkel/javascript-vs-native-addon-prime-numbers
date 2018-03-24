@@ -1,5 +1,12 @@
+require('make-promises-safe');
+
 const js = require('./primes.js');
 const addon = require('./build/Release/primes.node');
+const wasm = require('./primes-wasm.js');
+
+(async function() {
+
+await wasm.ready;
 
 console.log("Hello performance friends.");
 console.log();
@@ -11,6 +18,9 @@ function sanityCheck(n, expected) {
     if (addon.prime(n) !== expected) {
         console.error(`Looks like your C++ is not right ${addon.prime(n)}`);
     }
+    if (wasm.prime(n) !== expected) {
+        console.error(`Looks like your WebAssembly is not right ${wasm.prime(n)}`);
+    }
 }
 
 function run(i) {
@@ -21,8 +31,12 @@ function run(i) {
     console.timeEnd('Prime in js');
 
     console.time('Prime in addon');
-    addon.prime(i)
+    addon.prime(i);
     console.timeEnd('Prime in addon');
+
+    console.time('Prime in wasm');
+    wasm.prime(i);
+    console.timeEnd('Prime in wasm');
 }
 
 // Compute lots of primes.
@@ -65,3 +79,5 @@ checks.forEach(function (a) {
 
 console.log();
 console.log('So long and thanks for the fish.');
+
+})();

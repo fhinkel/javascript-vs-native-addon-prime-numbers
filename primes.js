@@ -1,3 +1,5 @@
+'use strict';
+
 function isPrime(p) {
     const upper = Math.sqrt(p);
     for(let i = 2; i <= upper; i++) {
